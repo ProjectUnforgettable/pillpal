@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PillPal Unhinged</title>
+<meta name="theme-color" content="#3b82f6">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="./styles.css">
+</head><body data-tier="1">
+<div class="bg"></div>
+<header class="top">
+  <div class="brand"><img src="./icons/icon-192.png" alt=""><div><h1>PillPal <span>Unhinged</span></h1><p id="clock">--:--</p></div></div>
+  <button id="settingsBtn" class="icon-btn" aria-label="Settings">⚙️</button>
+</header>
+<main>
+  <section id="unlock" class="card unlock">
+    <h2>🔊 Enable voice & alerts</h2>
+    <p>Browsers need one tap before the app can talk. Tap below to unlock speech and allow notifications.</p>
+    <button id="unlockBtn" class="btn primary big">Enable voice</button>
+  </section>
+  <section id="banners"></section>
+  <section class="card">
+    <div class="row-between"><h2>Today</h2><span id="todayDate" class="muted"></span></div>
+    <div id="today" class="doses"></div>
+  </section>
+  <section class="card">
+    <div class="row-between"><h2>Medications</h2><button id="addBtn" class="btn primary">+ Add</button></div>
+    <div id="medList"></div>
+  </section>
+  <p class="note">⚠️ Reminders run while this app is open (tab or home-screen app). Keep it open — web apps can't reliably remind you when fully closed. Not a substitute for medical advice.</p>
+</main>
+
+<dialog id="medDlg"><form id="medForm" method="dialog" class="dlg">
+  <h2 id="medDlgTitle">Add medication</h2>
+  <label>Drug name<input id="fName" required maxlength="80" placeholder="e.g. Lisinopril" autocomplete="off"></label>
+  <label>Dosage<input id="fDose" required maxlength="40" placeholder="e.g. 10 mg" autocomplete="off"></label>
+  <div class="label">Times of day</div>
+  <div id="fTimes"></div>
+  <button type="button" id="addTime" class="btn ghost">+ Add time</button>
+  <div class="dlg-actions"><button type="button" id="cancelMed" class="btn ghost">Cancel</button><button type="submit" class="btn primary">Save</button></div>
+</form></dialog>
+
+<dialog id="setDlg"><form method="dialog" class="dlg">
+  <h2>Settings</h2>
+  <label class="tog"><span>Voice reminders</span><input type="checkbox" id="sVoice"></label>
+  <label class="tog"><span>Mute all sound (banners & notifications still fire)</span><input type="checkbox" id="sMute"></label>
+  <label class="tog"><span>Clean mode (no swearing)</span><input type="checkbox" id="sClean"></label>
+  <label>Repeat interval (minutes)<input type="number" id="sInterval" min="1" max="120" step="1"></label>
+  <label>Escalation speed<select id="sSpeed"><option value="0.5">Chill (tier up every 2 reminders)</option><option value="1">Normal (every reminder)</option><option value="2">Feral (2 tiers per reminder)</option></select></label>
+  <label>Voice<select id="sVoiceName"><option value="">Default</option></select></label>
+  <div class="dlg-actions"><button type="button" id="testVoice" class="btn ghost">Test tier 1→5</button><button class="btn primary">Done</button></div>
+</form></dialog>
+<div id="toast" class="toast"></div>
+<script src="./lines.js"></script>
+<script src="./app.js"></script>
+</body></html>
